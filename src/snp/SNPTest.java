@@ -31,7 +31,7 @@ public class SNPTest {
 
 	@Test
 	public void test() {
-		
+//		FIXME テストコードの記述をしよう。
 		fail("まだ実装されていません");
 	}
 

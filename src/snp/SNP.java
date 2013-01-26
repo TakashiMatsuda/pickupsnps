@@ -11,6 +11,16 @@ public class SNP {
 	public static boolean DEBUG = true;
 	
 	/*
+	 * 属する染色体番号
+	 */
+	private /*final*/ String chrom;
+	
+	/*
+	 * 当該一塩基多型の位置
+	 */
+	private /*final*/ int pos;
+	
+	/*
 	 * 読み込んだ対立遺伝子型列
 	 */
 	private char[] alleles;
@@ -32,6 +42,17 @@ public class SNP {
 	private double[] Pvalues;
 	
 	
+	/**
+	 * 
+	 * @param ch
+	 * @param p
+	 * @param alle
+	 */
+	public SNP(String ch, int p, char[] alle){
+		this.chrom = ch;
+		this.pos = p;
+		this.alleles = alle;
+	}
 	
 	
 	

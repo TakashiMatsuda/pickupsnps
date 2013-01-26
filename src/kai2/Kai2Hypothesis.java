@@ -1,6 +1,9 @@
 package kai2;
 
-import snp.SNP;
+import snp.*;
+import org.apache.commons.math3.special.Erf;
+import pheno.PhenoList;
+import eco.EcoList;
 
 
 /**
@@ -10,16 +13,59 @@ import snp.SNP;
  */
 public class Kai2Hypothesis {
 	
-	private static ContingencyValue contingencytable = new ContingencyValue();
 	private double[][] n;
 	private double[][] e;
+	private SNPList snplist;
+	private EcoList ecolist;
+	private PhenoList phenolist;
+	private static Kai2Hypothesis singleton;
 	
 	/**
 	 * 
 	 * @param args
 	 */
-	public static void main(String args){
+	public static void main(String argv){
+		singleton = new Kai2Hypothesis();
+		singleton.init();
+		singleton.run(true);
 		
+	}
+	
+	
+	private void init(){
+		loadFiles();
+	}
+	
+	/**
+	 * 各ファイルをロードして、SNPList, EcoList, PhenoListに格納します。
+	 * Input処理です。例外処理を含みます。
+	 */
+	private void loadFiles(){
+		
+	}
+	
+	
+	/**
+	 * p値の表を出力し、多重検定の結果上位のSNPsリストを出力します。
+	 * @param trigger
+	 */
+	private void run(boolean trigger){
+		
+	}
+	
+	/**
+	 * 
+	 */
+	private void writePValues(SNPList snplist){
+		
+	}
+	
+	
+	/**
+	 * 
+	 * @param snplist
+	 */
+	private void writeHighRankSNPs(SNPList snplist){
 		
 	}
 	
@@ -30,14 +76,10 @@ public class Kai2Hypothesis {
 	 * @param x
 	 * @return
 	 */
-	private double calcKipvalue(SNP snp){
-		for(int i = 0; i < 2; i++){
-			for(int j = 0; j < 2; j++){
-				
-			}
-		}
+	private double calcKipvalue(double sobs){
 		
-		return 0;
+		
+		return Erf.erfc(sobs);
 	}
 	
 	

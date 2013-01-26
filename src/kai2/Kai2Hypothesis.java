@@ -56,7 +56,18 @@ public class Kai2Hypothesis {
 	 */
 	private void loadFiles() {
 		loadsnpfile();
+		loadecofile();
+		loadphenofile();
+	}
 
+	private void loadecofile() {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	private void loadphenofile() {
+		// TODO 自動生成されたメソッド・スタブ
+		
 	}
 
 	/**
@@ -122,7 +133,7 @@ public class Kai2Hypothesis {
 	 * @param snplist2
 	 */
 	private void calcQQ(SNPList snplist2) {
-		// TODO 自動生成されたメソッド・スタブ
+
 
 	}
 
@@ -131,7 +142,7 @@ public class Kai2Hypothesis {
 	 * @param snplist2
 	 */
 	private void writeQQplot(SNPList snplist2) {
-		// TODO 自動生成されたメソッド・スタブ
+
 
 	}
 
@@ -157,7 +168,8 @@ public class Kai2Hypothesis {
 	 * @return
 	 */
 	private void calcKipvalue(SNPList snplist) {
-
+		// SNPからPhenoまでつながるしくみが必要だ。
+		
 		// return Erf.erfc(sobs);
 	}
 

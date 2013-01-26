@@ -1,15 +1,13 @@
 package snp;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * 
  * @author takashi
  *
  */
-public class SNPList {
-	private List<SNP> snplist;
-	
+public class SNPList extends ArrayList<SNP>{
 	
 	
 	

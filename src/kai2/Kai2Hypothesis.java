@@ -1,5 +1,7 @@
 package kai2;
 
+import snp.SNP;
+
 
 /**
  * 
@@ -23,11 +25,12 @@ public class Kai2Hypothesis {
 	
 	
 	/**
-	 * 	
+	 * ki二乗検定のp値の結果を返します。	
+	 * 
 	 * @param x
 	 * @return
 	 */
-	private double calcpvalue(double x){
+	private double calcKipvalue(SNP snp){
 		
 		return 0;
 	}

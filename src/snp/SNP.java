@@ -1,6 +1,7 @@
 package snp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.apache.commons.math3.special.Erf;
 
@@ -58,7 +59,8 @@ public class SNP {
 		this.chrom = ch;
 		this.pos = p;
 		this.alleles = alle;
-
+		phenotableList = new ArrayList<int[][]>();
+		contingencytablelist = new ArrayList<double[][]>();
 	}
 
 	/**
@@ -79,30 +81,36 @@ public class SNP {
 		char zero = alleles[0];
 		for (int i = 0; i < PHENONUMBER; i++) {
 			int[][] prentable = new int[2][2];
+			double[][] preETable = new double[2][2];
 			for (int j = 0; j < alleles.length; j++) {
 				if (zero == alleles[j]) {
 					/*
 					 * 
 					 */
-					// FIXME タテヨコ逆でしたーーーー！！！
 					if ((int) ecolist.get(j).getPhenoBinary(i) == 0) {
 						prentable[0][0]++;
-					} else {
+					} else if((int) ecolist.get(j).getPhenoBinary(i) == 1){
 						prentable[0][1]++;
+					}					
+					else{
+						// 何もしない("NA"の場合に該当している。)
 					}
 				} else {
 					if ((int) ecolist.get(j).getPhenoBinary(i) == 0) {
 						prentable[1][0]++;
-					} else {
+					} else if((int) ecolist.get(j).getPhenoBinary(i) == 1){
 						prentable[1][1]++;
+					}
+					else{
+						// 何もしない
 					}
 
 				}
 
 			}
-			double[][] preETable = createContingencyTable(prentable);
-			phenotableList.add(prentable.clone());
-			contingencytablelist.add(preETable.clone());
+			preETable = createContingencyTable(prentable);
+			phenotableList.add(prentable);// ここがちゃんとaddされるのか、参照値渡しがどう行われるのか。
+			contingencytablelist.add(preETable);
 
 		}
 
@@ -166,7 +174,14 @@ public class SNP {
 			this.Pvalues[i] = calcPValues(phenotableList.get(i), contingencytablelist.get(i));
 		}
 		
-		System.out.println("P値ベクトルの計算が終了しました。");
+	}
+	
+	
+	/**
+	 * pvaluesをソートします。
+	 */
+	public void sortpValueArray(){
+		Arrays.sort(Pvalues);
 	}
 
 }

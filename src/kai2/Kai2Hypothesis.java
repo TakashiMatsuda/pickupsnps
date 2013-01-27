@@ -57,6 +57,7 @@ public class Kai2Hypothesis {
 		loadsnpfile();
 		loadecofile();
 		loadphenofile();
+		System.out.println("読み込みを完了しました");
 	}
 	
 	
@@ -80,8 +81,12 @@ public class Kai2Hypothesis {
 //				もし必要であればelements[0] ~ [3]も利用してください。今は捨てています。
 				prePV = elements[4].split(",");
 				for(int i = 0; i < prePV.length; i++){
-//					FIXME NAの場合を分ける必要があります。
-					phenovalues[i] = Double.parseDouble(prePV[i]);
+					if (!prePV[i].equals("NA")){
+						phenovalues[i] = Double.parseDouble(prePV[i]);
+					}
+					else{
+						phenovalues[i] = -1;//FIXME この点を考慮したコードを下流実装に注入する必要がある。
+					}
 				}
 				Eco eco = new Eco(phenovalues);
 				ecolist.add(eco);
@@ -140,8 +145,9 @@ public class Kai2Hypothesis {
 				for (int i = 0; i < 199; i++) {
 						alleles[i] = prealleles[i].charAt(0);
 				}
-				SNP snp = new SNP(elements[0], pos, alleles.clone());
+				SNP snp = new SNP(elements[0], pos, alleles);
 				snplist.add(snp);
+				
 
 			}
 			br.close();
@@ -158,21 +164,34 @@ public class Kai2Hypothesis {
 	 */
 	private void run(boolean trigger) {
 		singleton.calcKipvalue(snplist);
-		singleton.writePValues(snplist);
+		singleton.writePValues(snplist);// いらない？
 
 		singleton.calcQQ(snplist);
 		singleton.writeQQplot(snplist);
 
-		singleton.calcKipvalue(snplist);
+		singleton.calcHighRankSNPs(snplist);
 		singleton.writeHighRankSNPs(snplist);
 	}
-
+	
+	
 	/**
 	 * 
 	 * @param snplist2
 	 */
-	private void calcQQ(SNPList snplist2) {
+	private void calcHighRankSNPs(SNPList snplist2) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
 
+	/**
+	 * QQプロットの作成段階です。
+	 * @param snplist2
+	 */
+	private void calcQQ(SNPList snplist2) {
+		// TODO 次はここから
+		
+//		各SNPについてqqプロットを作成する。
+		
 
 	}
 
@@ -197,7 +216,7 @@ public class Kai2Hypothesis {
 	 * @param snplist
 	 */
 	private void writeHighRankSNPs(SNPList snplist) {
-
+		
 	}
 
 	/**
@@ -207,8 +226,11 @@ public class Kai2Hypothesis {
 	 * @return
 	 */
 	private void calcKipvalue(SNPList snplist) {
+		System.out.println("p値ベクトルを計算しています。");
 		snplist.setAllphenotablelist(ecolist);
 		snplist.setAllPValues();
+		
+		System.out.println("p値ベクトルの計算が終了しました。");
 	}
 
 }

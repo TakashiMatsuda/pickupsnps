@@ -88,15 +88,29 @@ public class Kai2Hypothesis {
 				ecolist.add(eco);
 				
 			}
-			
+			br.close();
 		} catch (Exception e){
 			e.printStackTrace();
 		}
 		
 	}
 
+	
+	/*
+	 * pheno_info.txtを読み込み、phenolistを作成します。
+	 * 実は特に今は必要ない。最終的にどのphenoの情報を出力するときに必要になる。
+	 * (未実装)
+	 */
 	private void loadphenofile() {
-		// TODO 自動生成されたメソッド・スタブ
+		try{
+			String line = null;
+			BufferedReader br = new BufferedReader(new FileReader("pheno_info.txt"));
+			
+			
+			br.close();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -131,6 +145,7 @@ public class Kai2Hypothesis {
 				snplist.add(snp);
 
 			}
+			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

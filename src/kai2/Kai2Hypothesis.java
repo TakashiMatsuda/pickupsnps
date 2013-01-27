@@ -18,9 +18,7 @@ import eco.EcoList;
  */
 public class Kai2Hypothesis {
 	public static boolean SIGN = true;
-
-	private double[][] n;
-	private double[][] e;
+	
 	private SNPList snplist;
 	private EcoList ecolist;
 	private PhenoList phenolist;
@@ -208,7 +206,7 @@ public class Kai2Hypothesis {
 	 * @return
 	 */
 	private void calcKipvalue(SNPList snplist) {
-		// SNPからPhenoまでつながるしくみが必要だ。
+		snplist.calcAllphenotable(ecolist);
 		
 		// return Erf.erfc(sobs);
 	}

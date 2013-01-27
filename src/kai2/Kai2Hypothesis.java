@@ -36,9 +36,9 @@ public class Kai2Hypothesis {
 
 	/**
 	 * 
-	 * @param args
+	 * @param argv
 	 */
-	public static void main(String argv) {
+	public static void main(String[] args) {
 		singleton = new Kai2Hypothesis();
 		singleton.init();
 		singleton.run(SIGN);
@@ -78,8 +78,9 @@ public class Kai2Hypothesis {
 				elements = line.split("	");
 				
 //				もし必要であればelements[0] ~ [3]も利用してください。今は捨てています。
-				prePV = elements[5].split(",");
+				prePV = elements[4].split(",");
 				for(int i = 0; i < prePV.length; i++){
+//					FIXME NAの場合を分ける必要があります。
 					phenovalues[i] = Double.parseDouble(prePV[i]);
 				}
 				Eco eco = new Eco(phenovalues);
@@ -200,15 +201,14 @@ public class Kai2Hypothesis {
 	}
 
 	/**
-	 * ki二乗検定のp値の結果を返します。
+	 * ki二乗検定のp値の結果を返します。（実装完了）
 	 * 
 	 * @param x
 	 * @return
 	 */
 	private void calcKipvalue(SNPList snplist) {
-		snplist.calcAllphenotable(ecolist);
-		
-		// return Erf.erfc(sobs);
+		snplist.setAllphenotablelist(ecolist);
+		snplist.setAllPValues();
 	}
 
 }

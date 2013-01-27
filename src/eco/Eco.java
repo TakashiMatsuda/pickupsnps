@@ -6,5 +6,14 @@ package eco;
  *
  */
 public class Eco {
-
+	double[] phenoarray;
+	
+	/**
+	 * 
+	 * @param array
+	 */
+	public Eco(double[] array){
+		this.phenoarray = array;
+	}
+	
 }

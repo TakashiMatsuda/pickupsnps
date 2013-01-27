@@ -54,6 +54,8 @@ public class SNP {
 		this.alleles = alle;
 	}
 	
+	
+	
 	public void setphenotable(){};
 	
 }

@@ -8,6 +8,7 @@ import snp.*;
 
 import org.apache.commons.math3.special.Erf;
 import pheno.PhenoList;
+import eco.Eco;
 import eco.EcoList;
 
 /**
@@ -29,7 +30,7 @@ public class Kai2Hypothesis {
 	 * 
 	 */
 	Kai2Hypothesis() {
-		this.snplist = new SNPList();
+		this.snplist = new SNPList(/*216130*/);// こういうコンストラクタを作りたい
 		this.ecolist = new EcoList();
 		this.phenolist = new PhenoList();
 
@@ -59,9 +60,38 @@ public class Kai2Hypothesis {
 		loadecofile();
 		loadphenofile();
 	}
-
+	
+	
+	/*
+	 * pheno.txtを読み込んで、ecolistを作成します。(実装完了)
+	 */
 	private void loadecofile() {
-		// TODO 自動生成されたメソッド・スタブ
+		try{
+			String line = null;
+			BufferedReader br = new BufferedReader(new FileReader("pheno.txt"));
+			StringBuilder a;
+			double[] phenovalues = new double[22];
+			String[] elements = new String[5];
+			String[] prePV = new String[22];
+			while((line = br.readLine()) != null){
+				/*
+				 * 新しいEcoインスタンスを作成し、EcoListに追加します。
+				 */
+				elements = line.split("	");
+				
+//				もし必要であればelements[0] ~ [3]も利用してください。今は捨てています。
+				prePV = elements[5].split(",");
+				for(int i = 0; i < prePV.length; i++){
+					phenovalues[i] = Double.parseDouble(prePV[i]);
+				}
+				Eco eco = new Eco(phenovalues);
+				ecolist.add(eco);
+				
+			}
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -71,13 +101,13 @@ public class Kai2Hypothesis {
 	}
 
 	/**
-	 * 
+	 * snps.txtを読み込み、snplistを作成します。(実装完了)
 	 */
 	private void loadsnpfile() {
 		try {
 			String line = null;
-			BufferedReader br = new BufferedReader(new FileReader("snp.txt"));
-			StringBuilder chrom = new StringBuilder();
+			BufferedReader br = new BufferedReader(new FileReader("snps.txt"));
+//			StringBuilder chrom = new StringBuilder();
 			int pos = 0;
 			String[] elements = new String[3];
 			char[] alleles = new char[199];
@@ -91,16 +121,11 @@ public class Kai2Hypothesis {
 				/*
 				 * elements[2]からcharを取り出す
 				 */
-				// TODO alleleがNAの時の対処を考えてください。 -> 'N'を入れることにしよう
 				// 重い処理にしますが、データが多くないので気にしない
 				// やろうと思えば、preallelesの生成はいらないはずです。(字数を数えていけばよい)
 				prealleles = elements[2].split(",");
 				for (int i = 0; i < 199; i++) {
-					if (prealleles[i] != "NA") {
 						alleles[i] = prealleles[i].charAt(0);
-					} else {
-						alleles[i] = 'N';
-					}
 				}
 				SNP snp = new SNP(elements[0], pos, alleles.clone());
 				snplist.add(snp);

@@ -3,6 +3,7 @@ package kai2;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Set;
 
 import snp.*;
 
@@ -166,8 +167,8 @@ public class Kai2Hypothesis {
 		singleton.calcKipvalue(snplist);
 		singleton.writePValues(snplist);// いらない？
 
-		singleton.calcQQ(snplist);
-		singleton.writeQQplot(snplist);
+		Set<double[]> pointset = singleton.calcQQ(snplist);
+		singleton.writeQQplot(pointset);
 
 		singleton.calcHighRankSNPs(snplist);
 		singleton.writeHighRankSNPs(snplist);
@@ -187,20 +188,22 @@ public class Kai2Hypothesis {
 	 * QQプロットの作成段階です。
 	 * @param snplist2
 	 */
-	private void calcQQ(SNPList snplist2) {
+	private Set calcQQ(SNPList snplist2) {
 		// TODO 次はここから
-		
 //		各SNPについてqqプロットを作成する。
 		
-
+		
+		return null;
+		
 	}
 
 	/**
 	 * 
 	 * @param snplist2
 	 */
-	private void writeQQplot(SNPList snplist2) {
-
+	private void writeQQplot(Set<double[]> points) {
+//		tsv出力するか、
+//		Rを使うか考える。
 
 	}
 

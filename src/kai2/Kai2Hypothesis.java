@@ -13,7 +13,8 @@ import eco.Eco;
 import eco.EcoList;
 
 /**
- * 
+ * メインクラス
+ * 動作の流れをここに書いてください。
  * @author takashi
  * 
  */
@@ -45,7 +46,11 @@ public class Kai2Hypothesis {
 		singleton.run(SIGN);
 
 	}
-
+	
+	
+	/**
+	 * このクラスの初期化手続き
+	 */
 	private void init() {
 		loadFiles();
 
@@ -159,6 +164,7 @@ public class Kai2Hypothesis {
 	}
 
 	/**
+	 * 実行関数。重要。
 	 * p値の表を出力し、QQプロットのためのtsvファイルを出力し、多重検定の結果上位のSNPsリストを出力します。
 	 * 
 	 * @param trigger
@@ -189,8 +195,9 @@ public class Kai2Hypothesis {
 	 * @param snplist2
 	 */
 	private Set calcQQ(SNPList snplist2) {
-		// TODO 次はここから
+		// FIXME 次はここから
 //		各SNPについてqqプロットを作成する。
+		
 		
 		
 		return null;
@@ -202,13 +209,11 @@ public class Kai2Hypothesis {
 	 * @param snplist2
 	 */
 	private void writeQQplot(Set<double[]> points) {
-//		tsv出力するか、
-//		Rを使うか考える。
 
 	}
 
 	/**
-	 * 
+	 * いらないかも。実装しなくていい。
 	 */
 	private void writePValues(SNPList snplist) {
 

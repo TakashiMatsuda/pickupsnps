@@ -12,6 +12,8 @@ import eco.EcoList;
 public class SNPList extends ArrayList<SNP>{
 	
 	
+//	FIXME ソート関数を用意したほうがいいんじゃないかな、自然
+	
 	/**
 	 * 
 	 * @param ecolist
